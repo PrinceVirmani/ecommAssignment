@@ -1,18 +1,42 @@
-# React + Vite
+# Leegality Frontend Engineer Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully functional Amazon-style e-commerce product listing and detail application built with React + Vite + Tailwind CSS.
 
-Currently, two official plugins are available:
+## Setup Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Installation
 
-## React Compiler
+# Clone the repository
+git clone <https://github.com/PrinceVirmani/ecommAssignment.git>
+cd ecommAssignment
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# make .env file and use this variable - 
+VITE_BASE_URL for the dummyjson URL
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# ecommAssignment
-# ecommAssignment
+# Start the server
+npm run dev
+
+# Open in browser
+http://localhost:5173
+
+### Key Decisions
+- **Context API over Redux**: Filter state is simple enough that a single context handles it cleanly without the overhead of Redux or Zustand.
+- **Client-side filtering for Price & Brand**: DummyJSON doesn't support server-side price/brand filtering, so these are applied client-side after fetching all products in a category.
+- **pagination**: Pagination resets automatically when any filter changes to avoid empty pages.
+
+## Assumptions Made
+
+1. The "Brand" field is not always present in DummyJSON products — items without a brand fall back to showing their category.
+2. Price filtering is applied client-side since the API does not support price range queries.
+3. Pagination shows 12 products per page.
+4. Ratings are rounded to the nearest whole number for star display.
+
+## Improvements Given More Time
+
+1. **Search bar** — full-text search using `/products/search?q=` endpoint
+2. **Cart functionality** — add to cart with a persistent cart drawer
+3. **Debounced price input** — avoid re-filtering on every keystroke
+4. **Sort options** — sort by price (low→high, high→low), rating, newest
