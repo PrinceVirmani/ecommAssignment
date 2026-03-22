@@ -53,6 +53,6 @@ export const fetchAllProducts = async () => {
     if(!res.ok){
         throw new Error("Failed to fetch all products'");
     }
-    const data = res.json();
+    const data = await res.json();
     return data;
 }
